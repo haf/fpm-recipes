@@ -4,6 +4,7 @@ task :default do
   puts `rake -T`
 end
 
+desc 'build all recipes'
 task :build do
   FileList['./*'].each do |recipe|
     if File.directory? recipe then
