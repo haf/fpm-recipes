@@ -36,12 +36,12 @@ class Supervisor < FPM::Cookery::Recipe
     case ::FPM::Cookery::Facts.target
     when :deb
       etc('supervisor').install workdir('supervisord.conf')
-      etc('init').install_p workdir('supervisor.init'), 'supervisor.conf'
-      etc('default').install_p workdir('supervisor.default'), 'supervisor'
+      etc('init').install workdir('supervisor.init'), 'supervisor.conf'
+      etc('default').install workdir('supervisor.default'), 'supervisor'
     when :rpm
       etc.install workdir('supervisord.conf')
 
-      etc('init.d').install_p workdir('supervisord'), 'supervisord'
+      etc('init.d').install workdir('supervisord'), 'supervisord'
       chmod 0755, etc('init.d/supervisord')
 
       etc('sysconfig').mkdir
