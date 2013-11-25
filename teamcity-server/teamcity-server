@@ -12,12 +12,12 @@ TEAMCITY_DIR=/opt/teamcity-server
 
 start() {
   echo "starting teamcity-server"
-  su -s /bin/bash -c "$TEAMCITY_DIR/bin/runAll.sh start" $USER
+  su -s /bin/bash -c "$TEAMCITY_DIR/bin/teamcity-server.sh start" $USER
 }
 
 stop() {
   echo "stopping teamcity-server"
-  su -s /bin/bash -c "$TEAMCITY_DIR/bin/runAll.sh stop" $USER
+  su -s /bin/bash -c "$TEAMCITY_DIR/bin/teamcity-server.sh stop" $USER
 }
  
 # Carry out specific functions when asked to by the system
