@@ -16,11 +16,25 @@ class TeamcityServer < FPM::Cookery::Recipe
   depends     'jdk'
 
   def build
-    safesystem 'tar zxf TeamCity-8.0.5.tar.gz'
+    # already built
   end
 
   def install
-    # https://bitbucket.org/haf/puppet-modules/src/60dc2959ed80dd3b238a86bf1da63d0282e05b11/teamcity_server/README.md?at=master
-    #opt('teamcity-server').install workdir('logstash.conf.example'), 'logstash.conf'
+    # custom service config dir
+    etc('sysconfig').mkdir
+
+    # InitV script
+    etc('init.d').install workdir('teamcity-server')
+    chmod 0755, etc('init.d/teamcity-server')
+
+    # data directory
+    var('lib/teamcity-server').mkdir
+
+    # installation directory
+    opt('teamcity-server').mkdir
+    opt('teamcity-server').install Dir['*']
+
+    # log directory
+    var('log/teamcity-server').mkdir
   end
 end
