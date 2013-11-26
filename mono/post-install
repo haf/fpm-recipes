@@ -1,0 +1,2 @@
+rm -f /usr/bin/mono
+ln -s /usr/bin/mono-sgen /usr/bin/mono
