@@ -39,6 +39,7 @@ GEM
       facter (~> 1.6)
       hiera (~> 1.0)
       rgen (~> 0.6.5)
+    rake (10.1.0)
     rgen (0.6.6)
     systemu (2.5.2)
 
@@ -48,3 +49,4 @@ PLATFORMS
 DEPENDENCIES
   fpm
   fpm-cookery
+  rake
