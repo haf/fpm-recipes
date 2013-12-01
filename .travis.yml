@@ -8,4 +8,4 @@ before_install:
 
 script:
   - bundle exec fpm-cook --version
-  - sudo PATH=$PATH bundle exec rake build
+  - PATH=$PATH bundle exec rake build
