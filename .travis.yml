@@ -7,9 +7,8 @@ before_install:
   - gem --version
 
 script:
+  - sudo gem install fpm-cook
+  - sudo fpm-cook install-deps
+  - bundle install
   - bundle exec fpm-cook --version
-  - sudo yum install -y ruby-devel
-  - sudo gem install bundler
-  - sudo bundle
-  - sudo bundle exec fpm-cook install-deps
   - PATH=$PATH bundle exec rake build
