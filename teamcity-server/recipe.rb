@@ -28,7 +28,7 @@ class TeamcityServer < FPM::Cookery::Recipe
     chmod 755, etc('init.d/teamcity-server')
 
     # data directory
-    var/'lib/teamcity-server'.mkdir
+    (var/'lib/teamcity-server').mkdir
     chmod 755, (var/libdir)
 
     # installation directory
