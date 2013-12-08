@@ -9,7 +9,7 @@ class Supervisor < FPM::Cookery::Recipe
   arch     'all'
   section  'admin'
 
-  depends        'python', 'python-setuptools'
+  depends        'python', 'python-setuptools', 'python-meld3'
 
   case ::FPM::Cookery::Facts.target
     when :deb
