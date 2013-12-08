@@ -29,7 +29,7 @@ class TeamcityServer < FPM::Cookery::Recipe
 
     # data directory
     (var/'lib/teamcity-server').mkdir
-    chmod 755, (var/libdir)
+    chmod 755, (var/'lib/teamcity-server')
 
     # installation directory
     opt('teamcity-server/conf').mkdir
