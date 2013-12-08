@@ -4,7 +4,7 @@ class TeamcityServer < FPM::Cookery::Recipe
 
   name        'teamcity-server'
   version     '8.0.5'
-  revision    1
+  revision    2
   arch        'x86_64'
   section     'ci'
 
