@@ -15,6 +15,9 @@ class TeamcityServer < FPM::Cookery::Recipe
 
   depends     'jdk'
 
+  post_install 'post-install'
+
+
   def build
     # already built
   end

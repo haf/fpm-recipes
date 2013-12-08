@@ -1,0 +1,2 @@
+chown -R teamcity-server /opt/teamcity-server
+chgrp -R teamcity /opt/teamcity-server
