@@ -34,6 +34,12 @@ namespace :recipes do
 end
 
 namespace :repo do
+  desc 'update all remotes, ff if possible'
+  task :sync do
+    system 'git remote update'
+    system 'git pull --ff-only'
+  end
+
   task :push do
     system 'git push origin master'
     system 'git push haf master'
