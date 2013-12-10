@@ -41,7 +41,7 @@ exec $*
     end
     safesystem 'chmod +x ./wrapper.sh'
 
-    configure prefix: prefix
+    configure :prefix => prefix
     safesystem './wrapper.sh', '/usr/bin/make'
   end
 
