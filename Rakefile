@@ -40,6 +40,7 @@ namespace :repo do
     system 'git pull --ff-only'
   end
 
+  desc 'push all changes'
   task :push do
     system 'git push origin master'
     system 'git push haf master'
