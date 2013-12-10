@@ -32,8 +32,7 @@ class Libgdiplus < FPM::Cookery::Recipe
 
   def build
     File.open('wrapper.sh', 'w+') do |io|
-      io.write %Q{
-#!/bin/sh
+      io.write %Q{#!/bin/sh
 export echo=echo
 echo $*
 exec $*
