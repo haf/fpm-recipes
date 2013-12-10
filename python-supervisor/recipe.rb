@@ -3,7 +3,7 @@ class Supervisor < FPM::Cookery::Recipe
 
   name     'python-supervisor'
   version  '3.0b2'
-  revision '1'
+  revision '2'
   homepage 'http://www.supervisord.org/'
   source   'https://github.com/Supervisor/supervisor', :with => :git, :tag => "#{version}"
   arch     'all'
