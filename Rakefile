@@ -32,3 +32,10 @@ namespace :recipes do
     build 'teamcity-server'
   end
 end
+
+namespace :repo do
+  task :push do
+    system 'git push origin master'
+    system 'git push haf master'
+  end
+end
