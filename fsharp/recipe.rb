@@ -4,7 +4,7 @@ class FSharp < FPM::Cookery::Recipe
 
   name 'fsharp'
   version '3.0.31'
-  revision 1
+  revision 2
   arch 'x86_64'
   section 'runtimes'
 
@@ -18,14 +18,10 @@ class FSharp < FPM::Cookery::Recipe
   def build
     safesystem "./autogen.sh --prefix=#{prefix}"
     make
-
-    `grep -R -l "#{destdir}" . --include "*.Targets"`.split(/\n/).each do |file|
-      inline_replace file do |s|
-        s.sub! destdir, ""
-      end
-    end
   end
   def install
     make :install, 'DESTDIR' => destdir
+    safesystem "(cd #{destdir} && find . -type f -exec sed -i 's|#{destdir}||g' {} \\;)"
   end
 end
+
