@@ -4,7 +4,7 @@ class FSharp < FPM::Cookery::Recipe
 
   name 'fsharp'
   version '3.0.31'
-  revision 1
+  revision 2
   arch 'x86_64'
   section 'runtimes'
 
@@ -21,5 +21,7 @@ class FSharp < FPM::Cookery::Recipe
   end
   def install
     make :install, 'DESTDIR' => destdir
+    safesystem "(cd #{destdir} && find . -type f -exec sed -i 's|#{destdir}||g' {} \\;)"
   end
 end
+
