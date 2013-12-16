@@ -18,6 +18,12 @@ class FSharp < FPM::Cookery::Recipe
   def build
     safesystem "./autogen.sh --prefix=#{prefix}"
     make
+
+    `grep -R -l "#{destdir}" . --include "*.Targets"`.split(/\n/).each do |file|
+      inline_replace file do |s|
+        s.sub! destdir, ""
+      end
+    end
   end
   def install
     make :install, 'DESTDIR' => destdir
