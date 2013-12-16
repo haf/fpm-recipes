@@ -16,12 +16,20 @@ def build dir
 end
 
 namespace :recipes do
+  task :libgdiplus do
+    build 'libgdiplus'
+  end
+
   task :mono do
     build 'mono'
   end
 
   task :fsharp do
     build 'fsharp'
+  end
+
+  task :eventstore do
+    build 'eventstore'
   end
 
   task :python_supervisor do
