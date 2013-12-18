@@ -1,3 +1,15 @@
+GIT
+  remote: https://github.com/bernd/fpm-cookery.git
+  revision: 7b413d17186c9ceb6191016d7a105d01f6adf545
+  branch: master
+  specs:
+    fpm-cookery (0.16.2)
+      addressable
+      facter
+      fpm (~> 0.4)
+      puppet
+      systemu
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -9,7 +21,7 @@ GEM
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     clamp (0.6.3)
-    facter (1.7.3)
+    facter (1.7.4)
     ffi (1.9.3)
     fpm (0.4.42)
       arr-pm (~> 0.0.8)
@@ -19,12 +31,6 @@ GEM
       clamp (~> 0.6)
       ftw (~> 0.0.30)
       json (>= 1.7.7)
-    fpm-cookery (0.16.2)
-      addressable
-      facter
-      fpm (~> 0.4)
-      puppet
-      systemu
     ftw (0.0.36)
       addressable
       backports (>= 2.6.2)
@@ -41,12 +47,12 @@ GEM
       rgen (~> 0.6.5)
     rake (10.1.0)
     rgen (0.6.6)
-    systemu (2.5.2)
+    systemu (2.6.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   fpm
-  fpm-cookery
+  fpm-cookery!
   rake
