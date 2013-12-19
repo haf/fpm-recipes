@@ -21,6 +21,7 @@ class FSharp < FPM::Cookery::Recipe
   end
   def install
     make :install, 'DESTDIR' => destdir
+    # see https://github.com/fsharp/fsharp/issues/204
     safesystem "(cd #{destdir} && find . -type f -exec sed -i 's|#{destdir}||g' {} \\;)"
   end
 end
