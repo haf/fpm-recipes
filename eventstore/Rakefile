@@ -1,0 +1,20 @@
+task :default do
+  system 'fpm-cook'
+  system %W[
+    fpm
+    -s             dir
+    -t             rpm
+    -C             tmp-build
+    --architecture noarch
+    --version      2.0.1
+    --category     databases
+    --depends      mono
+    --maintainer   developer@intelliplan.se
+    --vendor       Intelliplan_International_AB
+    --name         eventstore
+    --prefix       /opt/eventstore
+    --url          https://github.com/EventStore/EventStore
+    --force
+    .
+  ].join(' ')
+end
