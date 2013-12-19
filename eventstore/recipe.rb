@@ -21,6 +21,7 @@ class EventStore < FPM::Cookery::Recipe
 
   def install
     (opt/'eventstore').mkdir
-    opt('eventstore').install Dir['**/*']
+#    opt('eventstore').install Dir['**/*']
+    opt('eventstore').install Dir['*']
   end
 end
