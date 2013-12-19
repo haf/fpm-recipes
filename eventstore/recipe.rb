@@ -8,7 +8,7 @@ class EventStore < FPM::Cookery::Recipe
   arch        'noarch'
   section     'databases'
 
-  source      'http://download.geteventstore.com/binaries/eventstore-mono-2.0.1.tgz'
+  source      'http://download.geteventstore.com/binaries/eventstore-mono-2.0.1.tgz', :quiet => true
   sha1        '99744c57fb9930df96424e9ef7c73490e60ab9fb'
 
   maintainer  'Henrik Feldt <henrik@haf.se>'
@@ -21,6 +21,6 @@ class EventStore < FPM::Cookery::Recipe
 
   def install
     (opt/'eventstore').mkdir
-    opt('eventstore').install Dir['*']
+    opt('eventstore').install Dir['**/*']
   end
 end
