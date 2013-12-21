@@ -10,7 +10,7 @@ task :build => [:"recipes:mono", :"recipes:fsharp", :"recipes:python_supervisor"
 def build dir
   if File.directory? dir then
     Dir.chdir dir do
-      system 'fpm-cook' if File.exists? 'recipe.rb'
+      system 'fpm-cook --quiet' if File.exists? 'recipe.rb'
     end
   end
 end
