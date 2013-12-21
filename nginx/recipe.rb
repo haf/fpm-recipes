@@ -13,7 +13,7 @@ class Nginx < FPM::Cookery::Recipe
   build_depends 'gcc', 'gcc-c++', 'make', 'pcre-devel', 'zlib-devel', 'openssl-devel'
 
   # 'yum deplist nginx' yields:
-  depends       'openssl', 'glibc', 'libz', 'prce', 'libxslt',
+  depends       'openssl', 'glibc', 'zlib', 'prce', 'libxslt',
                 'gd', 'GeoIP', 'libxml2', 'perl', 'bash', 'shadow-utils',
                 'initscripts', 'chkconfig'
 
