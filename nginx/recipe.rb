@@ -17,39 +17,44 @@ class Nginx < FPM::Cookery::Recipe
                 'gd', 'GeoIP', 'libxml2', 'perl', 'bash', 'shadow-utils',
                 'initscripts', 'chkconfig'
 
-  config_files '/etc/nginx/nginx.conf', '/etc/nginx/mime.types',
-               '/var/www/nginx-default/index.html'
+  config_files '/etc/nginx/nginx.conf',
+               '/etc/nginx/mime.types'
 
   def build
     configure \
+      '--with-http_gzip_static_module',
       '--with-http_stub_status_module',
       '--with-http_ssl_module',
-      '--with-http_gzip_static_module',
       '--with-pcre',
-      '--with-debug',
+      '--with-file-aio',
+      '--with-http_realip_module',
+      '--without-http_scgi_module',
+      '--without-http_uwsgi_module',
+#      '--without-http_fastcgi_module',
 
-      :prefix => prefix,
+      :prefix                     => prefix,
 
-      :user => 'www-data',
-      :group => 'www-data',
+      :user                       => 'nginx',
+      :group                      => 'nginx',
 
-      :pid_path => '/var/run/nginx.pid',
-      :lock_path => '/var/lock/nginx.lock',
-      :conf_path => '/etc/nginx/nginx.conf',
-      :http_log_path => '/var/log/nginx/access.log',
-      :error_log_path => '/var/log/nginx/error.log',
-      :http_proxy_temp_path => '/var/lib/nginx/proxy',
-      :http_fastcgi_temp_path => '/var/lib/nginx/fastcgi',
-      :http_client_body_temp_path => '/var/lib/nginx/body',
-      :http_uwsgi_temp_path => '/var/lib/nginx/uwsgi',
-      :http_scgi_temp_path => '/var/lib/nginx/scgi'
+      :pid_path                   => '/var/run/nginx.pid',
+      :lock_path                  => '/var/lock/subsys/nginx',
+      :conf_path                  => '/etc/nginx/nginx.conf',
+      :http_log_path              => '/var/log/nginx/access.log',
+      :error_log_path             => '/var/log/nginx/error.log',
+      :http_proxy_temp_path       => '/var/lib/nginx/tmp/proxy',
+      :http_fastcgi_temp_path     => '/var/lib/nginx/tmp/fastcgi',
+      :http_client_body_temp_path => '/var/lib/nginx/tmp/client_body'
+#      :http_uwsgi_temp_path       => '/var/lib/nginx/tmp/uwsgi',
+#      :http_scgi_temp_path        => '/var/lib/nginx/tmp/scgi'
 
     make
   end
 
   def install
     # startup script
-    (etc/'init.d').install_p(workdir/'nginx.init.d', 'nginx')
+    (etc/'init.d').install(workdir/'init.d.nginx', 'nginx')
+    (etc/'sysconfig'/'nginx').install(workdir/'sysconfig.nginx', 'nginx')
 
     # config files
     (etc/'nginx').install Dir['conf/*']
