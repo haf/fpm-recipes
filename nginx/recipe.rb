@@ -30,6 +30,7 @@ class Nginx < FPM::Cookery::Recipe
       '--with-http_realip_module',
       '--without-http_scgi_module',
       '--without-http_uwsgi_module',
+      '--with-http_auth_request_module', # http://nginx.org/en/docs/http/ngx_http_auth_request_module.html
 #      '--without-http_fastcgi_module',
 
       :prefix                     => prefix,
