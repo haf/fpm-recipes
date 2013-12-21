@@ -1,1 +1,2 @@
-service nginx upgrade
+#!/bin/bash
+/sbin/service nginx upgrade
