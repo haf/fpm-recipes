@@ -54,7 +54,7 @@ class Nginx < FPM::Cookery::Recipe
   def install
     # startup script
     (etc/'init.d').install(workdir/'init.d.nginx', 'nginx')
-    (etc/'sysconfig'/'nginx').install(workdir/'sysconfig.nginx', 'nginx')
+    (etc/'sysconfig').install(workdir/'sysconfig.nginx', 'nginx')
 
     # config files
     (etc/'nginx').install Dir['conf/*']
