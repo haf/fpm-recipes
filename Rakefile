@@ -39,6 +39,10 @@ namespace :recipes do
   task :teamcity_server do
     build 'teamcity-server'
   end
+
+  task :nginx do
+    build 'nginx'
+  end
 end
 
 namespace :repo do
