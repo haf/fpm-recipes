@@ -3,9 +3,9 @@ class Logstash < FPM::Cookery::Recipe
   name        'logstash'
   # 1.2.2 fixes:
   # https://logstash.jira.com/browse/LOGSTASH-1585?jql=project%20%3D%20LOGSTASH%20AND%20affectedVersion%20%3D%20%221.2.2%22%20AND%20status%20in%20%28Resolved%2C%20Closed%29
-  version     '1.2.2'
+  version     '1.3.2'
   source      "https://download.elasticsearch.org/logstash/logstash/#{name}-#{version}-flatjar.jar"
-  sha1        '5b2dc3e0a09384ea8ed346d55806b3fce2bae5cf'
+  sha1        'd49d48e0a9590eccb3b8acaa368c01f18125f33d'
 
   revision    '1'
   maintainer  'Henrik Feldt <henrik@haf.se>'
