@@ -10,8 +10,8 @@ class FSharp < FPM::Cookery::Recipe
 
   # 3.0.31-4-gc8843c2:
   source 'https://github.com/fsharp/fsharp',
-    with: :git,
-    sha: 'c8843c230ae332841aeb7336ccb90dde53bd8a6e'
+    :with => git,
+    :sha => 'c8843c230ae332841aeb7336ccb90dde53bd8a6e'
 
   depends 'mono'
 
