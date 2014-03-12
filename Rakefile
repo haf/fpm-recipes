@@ -12,11 +12,8 @@ desc 'build all recipes'
 task :build => [:"recipes:mono", :"recipes:fsharp", :"recipes:python_supervisor", :"recipes:teamcity_server"]
 
 def fpm dir
-  puts "massa lol"
   if File.directory? dir then
-    puts "inte salol"
     Dir.chdir dir do
-      puts "lol"
       system 'fpm-cook clean'
       system 'fpm-cook --quiet --no-deps' if File.exists? 'recipe.rb'
     end
@@ -27,7 +24,6 @@ task :all_rpms do ; end
 
 namespace :recipes do
   task :build, :proj do |t, args|
-    puts args
     fpm args[:proj]
   end
 
