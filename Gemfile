@@ -1,5 +1,8 @@
-source 'https://rubygems.org'
+source "http://rubygems.org"
+
+gem 'albacore', :git => 'https://github.com/Albacore/albacore.git', :branch => 'master'
 
 gem 'rake'
-gem 'fpm'
-gem 'fpm-cookery', :git => 'https://github.com/bernd/fpm-cookery.git', :branch => 'master'
+gem 'fpm-cookery'
+gem 'net-ssh'
+

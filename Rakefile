@@ -1,3 +1,7 @@
+require 'bundler/setup'
+require 'albacore'
+
+
 desc 'display help'
 task :default do
   puts 'haf\'s fpm recipes'
@@ -7,9 +11,12 @@ end
 desc 'build all recipes'
 task :build => [:"recipes:mono", :"recipes:fsharp", :"recipes:python_supervisor", :"recipes:teamcity_server"]
 
-def build dir
+def fpm dir
+  puts "massa lol"
   if File.directory? dir then
+    puts "inte salol"
     Dir.chdir dir do
+      puts "lol"
       system 'fpm-cook clean'
       system 'fpm-cook --quiet --no-deps' if File.exists? 'recipe.rb'
     end
@@ -20,7 +27,8 @@ task :all_rpms do ; end
 
 namespace :recipes do
   task :build, :proj do |t, args|
-    build args[:proj]
+    puts args
+    fpm args[:proj]
   end
 
   task :all_rpms => %w|mono fsharp libgdiplus eventstore python_supervisor teamcity_server nginx|.map { |s| :"build[#{s}]" }
@@ -45,7 +53,7 @@ namespace :rpm do
 
   desc 'update yum repo with the build project'
   task :update_yum_repo, :proj do |t, args|
-    system 'scp', %W[#{args[:proj]}/pkg/*.rpm deployer@yum:/var/yum/el6/x86_64]
+    system 'scp', %W|#{args[:proj]}/pkg/*.rpm deployer@yum:/var/yum/el6/x86_64|
 
     Net::SSH.start 'yum', 'deployer' do |ssh|
       channel = ssh.open_channel do |ch|
