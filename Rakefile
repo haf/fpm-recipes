@@ -15,9 +15,11 @@ def fpm dir
   if File.directory? dir then
     Dir.chdir dir do
       system 'fpm-cook clean'
-      system 'fpm-cook --quiet --no-deps' if File.exists? 'recipe.rb'
+      shie 'fpm-cook --quiet --no-deps' if File.exists? 'recipe.rb'
     end
   end
+rescue e
+  puts e
 end
 
 task :all_rpms do ; end
@@ -27,7 +29,7 @@ namespace :recipes do
     fpm args[:proj]
   end
 
-  task :all_rpms => %w|mono fsharp libgdiplus eventstore python_supervisor teamcity_server nginx|.map { |s| :"build[#{s}]" }
+  task :all_rpms => %w|mono fsharp libgdiplus eventstore python-supervisor teamcity-server nginx|.map { |s| :"build[#{s}]" }
 end
 
 namespace :repo do
