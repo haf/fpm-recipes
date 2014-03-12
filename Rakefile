@@ -16,34 +16,14 @@ def build dir
   end
 end
 
+task :all_rpms do ; end
+
 namespace :recipes do
-  task :libgdiplus do
-    build 'libgdiplus'
+  task :build, :proj do |t, args|
+    build args[:proj]
   end
 
-  task :mono do
-    build 'mono'
-  end
-
-  task :fsharp do
-    build 'fsharp'
-  end
-
-  task :eventstore do
-    build 'eventstore'
-  end
-
-  task :python_supervisor do
-    build 'python-supervisor'
-  end
-
-  task :teamcity_server do
-    build 'teamcity-server'
-  end
-
-  task :nginx do
-    build 'nginx'
-  end
+  task :all_rpms => %w|mono fsharp libgdiplus eventstore python_supervisor teamcity_server nginx|.map { |s| :"build[#{s}]" }
 end
 
 namespace :repo do
@@ -58,4 +38,38 @@ namespace :repo do
     system 'git push origin master'
     system 'git push haf master'
   end
+end
+
+
+namespace :rpm do
+
+  desc 'update yum repo with the build project'
+  task :update_yum_repo, :proj do |t, args|
+    system 'scp', %W[#{args[:proj]}/pkg/*.rpm deployer@yum:/var/yum/el6/x86_64]
+
+    Net::SSH.start 'yum', 'deployer' do |ssh|
+      channel = ssh.open_channel do |ch|
+        ch.exec "/usr/bin/createrepo /var/yum/el6/x86_64" do |ch, success|
+          raise "could not execute command" unless success
+
+          # "on_data" is called when the process writes something to stdout
+          ch.on_data do |c, data|
+            $stdout.print data
+          end
+
+          # "on_extended_data" is called when the process writes something to stderr
+          ch.on_extended_data do |c, type, data|
+            $stderr.print data
+          end
+
+          ch.on_close do
+            puts "/usr/bin/createrepo done!"
+          end
+        end
+      end
+
+      channel.wait
+    end
+  end
+
 end
