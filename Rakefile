@@ -1,6 +1,7 @@
 require 'bundler/setup'
 require 'albacore'
 
+require 'net/ssh'
 
 desc 'display help'
 task :default do
