@@ -51,7 +51,7 @@ namespace :rpm do
 
   desc 'update yum repo with the build project'
   task :update_yum_repo, :proj do |t, args|
-    system 'scp', %W|#{args[:proj]}/pkg/*.rpm deployer@yum:/var/yum/el6/x86_64|
+    system 'scp', %W|-r #{args[:proj]}/pkg deployer@yum:/var/yum/el6/x86_64|
 
     Net::SSH.start 'yum', 'deployer' do |ssh|
       channel = ssh.open_channel do |ch|
