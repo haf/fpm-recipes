@@ -47,7 +47,7 @@ The version of the package to download.
 
 A sha1 hash, hexdigest-formatted
 
-## uri_template
+### uri_template
 
 This is the source from which to download the package. Any settings you have
 defined in the yaml file, except this one, will be replaced inside the string.
