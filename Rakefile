@@ -71,7 +71,7 @@ namespace :rpm do
           end
 
           ch.on_close do
-            puts '/usr/bin/createrepo done!'
+            puts 'closing channel to yumrepo'
           end
         end
       end
