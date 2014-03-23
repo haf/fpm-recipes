@@ -5,6 +5,8 @@ allows you to build a complete CentOS stack.
 
 You can rest your weary feet now.
 
+
+
 ```
 bundle
 # will build from recipe.rb
@@ -13,13 +15,19 @@ bundle exec rake recipes:build[nginx]
 bundle exec rake recipes:build[elasticsearch]
 ```
 
+As you understand, you can feed any of the folders into the `build\[ ... \]`
+task and have it build automatically. The `Rakefile` takes care of knowing
+whether to just download the RPM straight off a source or to build from source.
+
 ## License
 
 MIT
 
 ## source.yaml files
 
-Example:
+Example is
+[elasticsearch/source.yaml](https://github.com/haf/fpm-recipes/blob/master/elasticsearch/source.yaml)
+and reproduced below:
 
 ```
 ---
