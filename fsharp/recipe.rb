@@ -3,7 +3,7 @@ class FSharp < FPM::Cookery::Recipe
   homepage 'https://github.com/fsharp/fsharp'
 
   name 'fsharp'
-  version '3.0.31'
+  version '3.1.1.6'
   revision 2
   arch 'x86_64'
   section 'runtimes'
@@ -11,7 +11,7 @@ class FSharp < FPM::Cookery::Recipe
   # 3.0.31-4-gc8843c2:
   source 'https://github.com/fsharp/fsharp',
     :with => :git,
-    :sha => 'c8843c230ae332841aeb7336ccb90dde53bd8a6e'
+    :sha => 'ebd44343da096e41c53ca3ed26d3899077102b1a'
 
   depends 'mono'
 
@@ -22,7 +22,7 @@ class FSharp < FPM::Cookery::Recipe
   def install
     make :install, 'DESTDIR' => destdir
     # see https://github.com/fsharp/fsharp/issues/204
-    safesystem "(cd #{destdir} && find . -type f -exec sed -i 's|#{destdir}||g' {} \\;)"
+    # safesystem "(cd #{destdir} && find . -type f -exec sed -i 's|#{destdir}||g' {} \\;)"
   end
 end
 
