@@ -1,0 +1,9 @@
+---
+name:
+  'elasticsearch'
+version:
+  '1.0.1'
+sha1:
+  'd72bf1cca99ed89291fd0b7b4c6c6a5e0aceeb62'
+uri_template:
+  'https://download.elasticsearch.org/elasticsearch/elasticsearch/$name-$version.noarch.rpm'
