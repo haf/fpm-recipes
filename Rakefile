@@ -92,7 +92,7 @@ def fpm dir
   if File.directory? dir then
     Dir.chdir dir do
       system 'fpm-cook clean'
-      shie 'fpm-cook --quiet --no-deps'
+      system 'fpm-cook --quiet --no-deps'
     end
   end
 rescue e
