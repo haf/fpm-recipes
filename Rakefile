@@ -26,6 +26,7 @@ end
 task :all_rpms do ; end
 
 namespace :recipes do
+  desc 'build the given project'
   task :build, :proj do |t, args|
     fpm args[:proj]
   end
@@ -56,8 +57,8 @@ namespace :rpm do
 
     Net::SSH.start 'yum', 'deployer' do |ssh|
       channel = ssh.open_channel do |ch|
-        ch.exec "/usr/bin/createrepo /var/yum/el6/x86_64" do |ch, success|
-          raise "could not execute command" unless success
+        ch.exec '/usr/bin/createrepo /var/yum/el6/x86_64' do |ch, success|
+          raise 'could not execute command' unless success
 
           # "on_data" is called when the process writes something to stdout
           ch.on_data do |c, data|
@@ -70,7 +71,7 @@ namespace :rpm do
           end
 
           ch.on_close do
-            puts "/usr/bin/createrepo done!"
+            puts '/usr/bin/createrepo done!'
           end
         end
       end
