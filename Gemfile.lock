@@ -36,7 +36,7 @@ GEM
       ffi
       ftw (~> 0.0.30)
       json (>= 1.7.7)
-    fpm-cookery (0.20.0)
+    fpm-cookery (0.20.1)
       addressable
       facter
       fpm (~> 1.0.0)
