@@ -17,11 +17,20 @@ class Logstash < FPM::Cookery::Recipe
   config_files '/etc/logstash/logstash.conf'
 
   def build
+    # install the inputs
+    safesystem 'bin/plugin install contrib'
   end
 
   def install
+    # remove windows components
+    rm 'bin/logstash.bat'
+
+    etc('logstash').mkdir
     etc('logstash').install workdir('logstash.conf.example'), 'logstash.conf'
-    opt('logstash').install "#{name}-#{version}-flatjar.jar", 'logstash.jar'
+
+    # install everything from the tmp-dest dir in /opt/logstash
+    opt('logstash').mkdir
+    opt('logstash').install Dir['*']
   end
 end
 
