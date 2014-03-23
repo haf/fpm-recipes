@@ -15,7 +15,7 @@ bundle exec rake recipes:build[nginx]
 bundle exec rake recipes:build[elasticsearch]
 ```
 
-As you understand, you can feed any of the folders into the `build\[ ... \]`
+As you understand, you can feed any of the folders into the `build[ ... ]`
 task and have it build automatically. The `Rakefile` takes care of knowing
 whether to just download the RPM straight off a source or to build from source.
 
