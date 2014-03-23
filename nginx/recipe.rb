@@ -19,8 +19,8 @@ class Nginx < FPM::Cookery::Recipe
                 'gd', 'GeoIP', 'libxml2', 'perl', 'bash', 'shadow-utils',
                 'initscripts', 'chkconfig'
 
-  config_files '/etc/nginx/nginx.conf',
-               '/etc/nginx/mime.types'
+  #config_files '/etc/nginx/nginx.conf',
+  #             '/etc/nginx/mime.types'
 
   def build
     configure \
