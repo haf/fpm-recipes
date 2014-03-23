@@ -28,11 +28,11 @@ class TeamcityServer < FPM::Cookery::Recipe
 
     # InitV script
     etc('init.d').install workdir('teamcity-server')
-    chmod 755, etc('init.d/teamcity-server')
+    chmod 0755, etc('init.d/teamcity-server')
 
     # data directory
     (var/'lib/teamcity-server').mkdir
-    chmod 755, (var/'lib/teamcity-server')
+    chmod 0755, (var/'lib/teamcity-server')
 
     # installation directory
     opt('teamcity-server/conf').mkdir
