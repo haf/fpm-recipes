@@ -95,7 +95,7 @@ def fpm dir
       system 'fpm-cook --quiet --no-deps'
     end
   end
-rescue e
+rescue => e
   puts e
 end
 
