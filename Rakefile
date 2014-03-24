@@ -96,7 +96,8 @@ def fpm dir
     end
   end
 rescue => e
-  puts e
+  $stderr.puts e
+  raise "running fpm-cook in '#{dir}' failed"
 end
 
 task :all_rpms do ; end
