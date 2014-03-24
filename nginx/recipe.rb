@@ -56,8 +56,9 @@ class Nginx < FPM::Cookery::Recipe
 
   def install
     # startup script
-    (etc/'init.d').install(workdir/'init.d.nginx', 'nginx')
-    (etc/'sysconfig').install(workdir/'sysconfig.nginx', 'nginx')
+    etc('init.d').install workdir('init.d.nginx') => 'nginx'
+    etc('sysconfig').install workdir('sysconfig.nginx') => 'nginx'
+
     chmod 0755, etc('init.d/nginx')
 
     # config files
