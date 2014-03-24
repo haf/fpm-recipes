@@ -3,7 +3,7 @@ class Nginx < FPM::Cookery::Recipe
 
   name     'nginx'
   version  '1.5.12'
-  revision 1
+  revision 2
   homepage 'http://nginx.org/'
   source   "http://nginx.org/download/nginx-#{version}.tar.gz"
   sha1     '7b298d4eff54041920c233df5c52ec429af11ccd'
