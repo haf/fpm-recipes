@@ -5,7 +5,7 @@ class Mono < FPM::Cookery::Recipe
 
   name       'mono'
   version    '3.2.8'
-  revision   2
+  revision   1
   arch       'x86_64'
   section    'runtimes'
 
