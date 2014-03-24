@@ -4,10 +4,9 @@ class TeamcityServer < FPM::Cookery::Recipe
 
   name        'teamcity-server'
   version     '8.1.1'
-  revision    2
+  revision    3
   arch        'x86_64'
   section     'ci'
-  epoch       1
 
   source      "http://download-cf.jetbrains.com/teamcity/TeamCity-#{version}.tar.gz"
   sha1        '4151429282668d42a4f0a85a030d0c092cbe6b62'
