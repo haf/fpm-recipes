@@ -11,7 +11,8 @@ class Mono < FPM::Cookery::Recipe
 
   source     "https://github.com/mono/mono.git",
     :with => 'git',
-    :tag  => 'mono-3.2.8'
+    :tag  => 'mono-3.2.8',
+    :submodule => true
   
   maintainer 'Henrik Feldt <henrik@haf.se>'
 
