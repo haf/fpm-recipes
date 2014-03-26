@@ -19,9 +19,6 @@ class Nginx < FPM::Cookery::Recipe
                 'gd', 'GeoIP', 'libxml2', 'perl', 'bash', 'shadow-utils',
                 'initscripts', 'chkconfig'
 
-  #config_files '/etc/nginx/nginx.conf',
-  #             '/etc/nginx/mime.types'
-
   def build
     File.open('upstream_hash_patch.sh', 'w+') do |io|
       io.write %Q{
