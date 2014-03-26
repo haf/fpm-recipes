@@ -59,7 +59,6 @@ CHECKSUMS
       '--without-http_scgi_module',
       '--without-http_uwsgi_module',
       '--with-http_auth_request_module', # http://nginx.org/en/docs/http/ngx_http_auth_request_module.html
-#      '--without-http_fastcgi_module',
       '--add-module=nginx_upstream_hash',
 
       :prefix                     => prefix,
@@ -75,8 +74,6 @@ CHECKSUMS
       :http_proxy_temp_path       => '/var/lib/nginx/tmp/proxy',
       :http_fastcgi_temp_path     => '/var/lib/nginx/tmp/fastcgi',
       :http_client_body_temp_path => '/var/lib/nginx/tmp/client_body'
-#      :http_uwsgi_temp_path       => '/var/lib/nginx/tmp/uwsgi',
-#      :http_scgi_temp_path        => '/var/lib/nginx/tmp/scgi'
 
     make
   end
