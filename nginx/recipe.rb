@@ -23,6 +23,32 @@ class Nginx < FPM::Cookery::Recipe
   #             '/etc/nginx/mime.types'
 
   def build
+    File.open('upstream_hash_patch.sh', 'w+') do |io|
+      io.write %Q{
+#!/bin/sh
+DIR=nginx_upstream_hash
+REF=d244537631f5a90891d412047bc6ea8c707402a7
+rm -rf $DIR
+mkdir -p $DIR
+curl -sSL https://github.com/evanmiller/nginx_upstream_hash/archive/${REF}.tar.gz | tar -C $DIR --strip-components=1 -xzf -
+(cat <<CHECKSUMS
+f187213f7f7971b85e69d3ecd92c4946ef0c4dfa  $DIR/ngx_http_upstream_hash_module.c
+ce5d7be015038db1e59204b3f77f57ab6edb89d1  $DIR/README
+98f6fc414f1eca368d9186cf97431b64f586ccb3  $DIR/t/nginx.conf
+00e5d3202c901bd4b7908cdbe34b62904e034a99  $DIR/t/hashtest.php
+98f6fc414f1eca368d9186cf97431b64f586ccb3  $DIR/t/nginx/conf/nginx.conf
+1345a88786e3fd36dd648451d9e3c830b971cdbd  $DIR/t/restart.sh
+3b6e14f81556cee0e931f4b3eba45f283e534849  $DIR/t/clean.sh
+b2dc4577b5608af4760963cd3a5be0b46f74349c  $DIR/CHANGES
+ff5466d71a3586b29923b75341fe4f803c60b615  $DIR/CREDITS
+a1100617b9445c328072c8ef785e745e8a108313  $DIR/config
+CHECKSUMS
+)| sha1sum -c
+}
+    end
+    safesystem 'chmod +x ./upstream_hash_patch.sh'
+    safesystem './upstream_hash_patch.sh'
+
     configure \
       '--with-http_gzip_static_module',
       '--with-http_stub_status_module',
@@ -34,6 +60,7 @@ class Nginx < FPM::Cookery::Recipe
       '--without-http_uwsgi_module',
       '--with-http_auth_request_module', # http://nginx.org/en/docs/http/ngx_http_auth_request_module.html
 #      '--without-http_fastcgi_module',
+      '--add-module=nginx_upstream_hash',
 
       :prefix                     => prefix,
 
