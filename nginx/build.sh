@@ -67,6 +67,7 @@ cpd build/nginx/objs/nginx.8.gz build/install/usr/share/man/man8/nginx.8.gz
 mkdir -p build/install/var/{run,lock,log/nginx,lib/nginx}
 
 ### make rpm
+mkdir -p pkg
 fpm \
  	-s dir \
 	-t rpm \
