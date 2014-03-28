@@ -1,0 +1,10 @@
+f187213f7f7971b85e69d3ecd92c4946ef0c4dfa  build/upstream_hash/ngx_http_upstream_hash_module.c
+ce5d7be015038db1e59204b3f77f57ab6edb89d1  build/upstream_hash/README
+98f6fc414f1eca368d9186cf97431b64f586ccb3  build/upstream_hash/t/nginx.conf
+00e5d3202c901bd4b7908cdbe34b62904e034a99  build/upstream_hash/t/hashtest.php
+98f6fc414f1eca368d9186cf97431b64f586ccb3  build/upstream_hash/t/nginx/conf/nginx.conf
+1345a88786e3fd36dd648451d9e3c830b971cdbd  build/upstream_hash/t/restart.sh
+3b6e14f81556cee0e931f4b3eba45f283e534849  build/upstream_hash/t/clean.sh
+b2dc4577b5608af4760963cd3a5be0b46f74349c  build/upstream_hash/CHANGES
+ff5466d71a3586b29923b75341fe4f803c60b615  build/upstream_hash/CREDITS
+a1100617b9445c328072c8ef785e745e8a108313  build/upstream_hash/config

@@ -100,8 +100,6 @@ rescue => e
   raise "running fpm-cook in '#{dir}' failed"
 end
 
-task :all_rpms do ; end
-
 namespace :recipes do
   desc 'download an existing rpm'
   task :download, :proj do |t, args|
@@ -115,12 +113,14 @@ namespace :recipes do
       RpmDownloader.download args
     elsif File.exists?(File.join(args[:proj], 'recipe.rb'))
       fpm args[:proj]
+    elsif File.exists?(File.join(args[:proj], 'build.sh'))
+      Dir.chdir args[:proj] do
+        sh './build.sh'
+      end
     else
-      raise "neither #{args[:proj]}/{source.yaml,recipe.rb} found!"
+      raise "neither #{args[:proj]}/{source.yaml,recipe.rb,build.sh} found!"
     end
   end
-
-  task :all_rpms => %w|mono fsharp libgdiplus eventstore python-supervisor teamcity-server nginx|.map { |s| :"build[#{s}]" }
 end
 
 namespace :repo do
