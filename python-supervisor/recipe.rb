@@ -2,8 +2,8 @@ class Supervisor < FPM::Cookery::Recipe
   description 'A client/server system that allows its users to monitor and control a number of processes on UNIX-like operating systems'
 
   name     'python-supervisor'
-  version  '3.0b2'
-  revision '2'
+  version  '3.0'
+  revision '3'
   homepage 'http://www.supervisord.org/'
   source   'https://github.com/Supervisor/supervisor', :with => :git, :tag => "#{version}"
   arch     'all'
