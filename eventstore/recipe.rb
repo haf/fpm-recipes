@@ -4,7 +4,7 @@ class EventStore < FPM::Cookery::Recipe
 
   name        'eventstore'
   version     '2.0.1'
-  revision    1
+  revision    2
   arch        'noarch'
   section     'databases'
 
@@ -21,7 +21,6 @@ class EventStore < FPM::Cookery::Recipe
 
   def install
     (opt/'eventstore').mkdir
-#    opt('eventstore').install Dir['**/*']
-    opt('eventstore').install Dir['*']
+    opt('eventstore').install Dir['**/*']
   end
 end
