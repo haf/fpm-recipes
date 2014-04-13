@@ -13,11 +13,11 @@ GIT
       semver2 (~> 3.3)
 
 GIT
-  remote: https://github.com/bernd/fpm-cookery.git
-  revision: 2442a7b7bea1fef9743c3ddaf0a5bf951e637c8b
-  ref: 2442a7b7bea1fef9743c3ddaf0a5bf951e637c8b
+  remote: https://github.com/haf/fpm-cookery.git
+  revision: 619c27236dab944985fd00bf5f54e9bf757fef82
+  ref: 619c27236dab944985fd00bf5f54e9bf757fef82
   specs:
-    fpm-cookery (0.20.1)
+    fpm-cookery (0.21.0)
       addressable
       facter
       fpm (~> 1.0.0)
