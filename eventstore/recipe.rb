@@ -8,7 +8,7 @@ class EventStore < FPM::Cookery::Recipe
   arch        'noarch'
   section     'databases'
 
-  source      'http://download.geteventstore.com/binaries/eventstore-mono-2.0.1.tgz', :quiet => true
+  source      'http://download.geteventstore.com/binaries/EventStore-OSS-Linux-v2.0.1.tar.gz', :quiet => true
   sha1        '99744c57fb9930df96424e9ef7c73490e60ab9fb'
 
   maintainer  'Henrik Feldt <henrik@haf.se>'
