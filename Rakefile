@@ -137,6 +137,7 @@ end
 namespace :rpm do
   desc 'update yum repo with the build project'
   task :update_yum_repo, :proj do |t, args|
+    next if ENV['SKIP_YUM_REPO']
     sh "scp #{args[:proj]}/pkg/*.rpm deployer@yum:/var/yum/el6/x86_64"
 
     Net::SSH.start 'yum', 'deployer' do |ssh|
@@ -184,6 +185,7 @@ namespace :rpm do
 
   desc 'upload a package to packagecloud/haf/oss using PACKAGECLOUD_KEY environment var as key'
   task :update_packagecloud, :proj do |t, args|
+    next if ENV['SKIP_PACKAGECLOUD']
     pkg = FileList["#{args[:proj]}/pkg/*.{rpm}"].sort.first
     raise "Build of package '#{args[:proj]}' didn't produce an RPM, exiting" unless pkg
     packagecloud_upload pkg
