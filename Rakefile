@@ -118,34 +118,6 @@ namespace :recipes do
       raise "neither #{args[:proj]}/{source.yaml,recipe.rb,build.sh} found!"
     end
   end
-
-  # finding the id for EL6 (and EL7 in the future?)
-  # $ curl https://SECRET:@packagecloud.io/api/v1/distributions --silent \
-  #     | jq '.rpm | map(select(.index_name == "el")) | .[0].versions | map(select(.version_number == "6.0")) | .[] | .id'
-  # => 27
-
-  # Upload the package to packagecloud.io
-  #
-  def packagecloud_upload package,
-                          user = 'haf',
-                          repo = 'oss',
-                          distro_id = 27,
-                          key = ENV['PACKAGECLOUD_KEY']
-    system 'curl', %W|-X POST https://#{key}:@packagecloud.io/api/v1/repos/#{user}/#{repo}/packages.json
-                      -F package[distro_version_id]=#{distro_id}
-                      -F package[package_file]=@#{package}|,
-           silent: true # don't leak API key, silent plx
-  end
-  
-  desc 'upload a package to packagecloud/haf/oss using PACKAGECLOUD_KEY environment var as key'
-  task :build_push, :proj do |t, args|
-    raise ArgumentError, 'missing args[:proj] parameter' unless args[:proj]
-    Rake::Task["recipes:build[#{args[:proj]}]"].invoke
-
-    pkg = FileList["#{args[:proj]}/pkg/*.{rpm}"].sort.first
-    raise "Build of package '#{args[:proj]}' didn't produce an RPM, exiting" unless pkg
-    packagecloud_upload pkg
-  end
 end
 
 namespace :repo do
@@ -192,4 +164,28 @@ namespace :rpm do
     end
   end
 
+  # finding the id for EL6 (and EL7 in the future?)
+  # $ curl https://SECRET:@packagecloud.io/api/v1/distributions --silent \
+  #     | jq '.rpm | map(select(.index_name == "el")) | .[0].versions | map(select(.version_number == "6.0")) | .[] | .id'
+  # => 27
+
+  # Upload the package to packagecloud.io
+  #
+  def packagecloud_upload package,
+                          user = 'haf',
+                          repo = 'oss',
+                          distro_id = 27,
+                          key = ENV['PACKAGECLOUD_KEY']
+    system 'curl', %W|-X POST https://#{key}:@packagecloud.io/api/v1/repos/#{user}/#{repo}/packages.json
+                      -F package[distro_version_id]=#{distro_id}
+                      -F package[package_file]=@#{package}|,
+           silent: true # don't leak API key, silent plx
+  end
+
+  desc 'upload a package to packagecloud/haf/oss using PACKAGECLOUD_KEY environment var as key'
+  task :update_packagecloud, :proj do |t, args|
+    pkg = FileList["#{args[:proj]}/pkg/*.{rpm}"].sort.first
+    raise "Build of package '#{args[:proj]}' didn't produce an RPM, exiting" unless pkg
+    packagecloud_upload pkg
+  end
 end
