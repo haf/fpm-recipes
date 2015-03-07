@@ -3,20 +3,17 @@ class EventStore < FPM::Cookery::Recipe
   homepage    'http://geteventstore.com/'
 
   name        'eventstore'
-  version     '2.0.1'
+  version     '3.0.1'
   revision    2
   arch        'noarch'
   section     'databases'
 
-  source      'http://download.geteventstore.com/binaries/EventStore-OSS-Linux-v2.0.1.tar.gz', :quiet => true
-  sha1        '99744c57fb9930df96424e9ef7c73490e60ab9fb'
+  source      'http://download.geteventstore.com/binaries/EventStore-OSS-Linux-v3.0.1.tar.gz', :quiet => true
+  sha1        'ab1c4d43a28366f123606452d7fdc91fa013e1e6'
 
   maintainer  'Henrik Feldt <henrik@haf.se>'
 
-  depends     'mono'
-
   def build
-    # just to unzip!
   end
 
   def install
