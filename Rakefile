@@ -178,6 +178,7 @@ namespace :rpm do
                           repo = 'oss',
                           distro_id = 27,
                           key = ENV['PACKAGECLOUD_KEY']
+    puts "Uploading #{package} to Packagecloud, distro_id: #{distro_id}"
     system 'curl', %W|-X POST https://#{key}:@packagecloud.io/api/v1/repos/#{user}/#{repo}/packages.json
                       -F package[distro_version_id]=#{distro_id}
                       -F package[package_file]=@#{package}|,
