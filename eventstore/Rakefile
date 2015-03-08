@@ -6,11 +6,11 @@ task :default do
     -t             rpm
     -C             tmp-build
     --architecture noarch
-    --version      2.0.1
+    --version      3.0.1
     --category     databases
     --depends      mono
-    --maintainer   developer@intelliplan.se
-    --vendor       Intelliplan_International_AB
+    --maintainer   henrik@haf.se
+    --vendor       Logibit
     --name         eventstore
     --prefix       /opt/eventstore
     --url          https://github.com/EventStore/EventStore
