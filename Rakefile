@@ -169,6 +169,7 @@ namespace :rpm do
   # $ curl https://SECRET:@packagecloud.io/api/v1/distributions --silent \
   #     | jq '.rpm | map(select(.index_name == "el")) | .[0].versions | map(select(.version_number == "6.0")) | .[] | .id'
   # => 27
+  # el7: 140
 
   # Upload the package to packagecloud.io
   #
@@ -188,6 +189,7 @@ namespace :rpm do
     next if ENV['SKIP_PACKAGECLOUD']
     pkg = FileList["#{args[:proj]}/pkg/*.{rpm}"].sort.first
     raise "Build of package '#{args[:proj]}' didn't produce an RPM, exiting" unless pkg
-    packagecloud_upload pkg
+    packagecloud_upload pkg, distro_id: 27
+    packagecloud_upload pkg, distro_id: 140
   end
 end
