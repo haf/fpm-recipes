@@ -4,14 +4,14 @@ class Mono < FPM::Cookery::Recipe
   homepage   'http://www.mono-project.com'
 
   name       'mono'
-  version    '3.12.0'
+  version    '3.12.1'
   revision   1
   arch       'x86_64'
   section    'runtimes'
 
   source     "https://github.com/mono/mono.git",
     :with => 'git',
-    :tag  => 'mono-3.12.0.68',
+    :tag  => 'mono-3.12.1',
     :submodule => true
 
   maintainer 'Henrik Feldt <henrik@haf.se>'
